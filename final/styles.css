@@ -1,0 +1,242 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #3a2b5e; 
+    color: #F0F0F0;
+    padding: 10px;
+    min-height: 100vh;
+}
+
+.site-nav {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #E30022; 
+    margin-bottom: 20px;
+}
+.site-nav a {
+    color: #017AFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.character-selector {
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #503d7c; 
+    padding: 15px;
+    border-radius: 8px;
+}
+#char-selector-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+.char-select-btn {
+    background-color: #333;
+    color: #F0F0F0;
+    border: 2px solid #017AFF; 
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, border-color 0.2s;
+    flex-grow: 0; 
+    min-width: 115px;
+    white-space: nowrap;
+}
+.char-select-btn:hover {
+    background-color: #444;
+}
+.char-select-btn.active {
+    background-color: #017AFF; 
+    border-color: #F0F0F0; 
+    font-weight: bold;
+}
+
+.battle-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card {
+    background-color: #503d7c; 
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.player-card {
+    border: 3px solid #017AFF; 
+}
+
+.enemy-card {
+    border: 3px solid #9933FF; 
+}
+
+.image {
+    width: 100%;
+    height: 400px; 
+    object-fit: contain; /* UPDATED: Ensures the entire image is visible */
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stats p {
+    font-size: 0.9em;
+    margin: 3px 0;
+}
+
+.attributes {
+    margin-top: 15px;
+    text-align: left;
+    padding: 10px;
+    border-top: 1px solid #444;
+}
+.attributes h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #017AFF; 
+}
+.stat-item {
+    font-size: 0.85em;
+    margin-bottom: 3px;
+}
+.stat-item small {
+    color: #AAA;
+}
+
+.dead-status {
+    color: #FF6347; 
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+.buttons button {
+    padding: 10px 0;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #E30022; 
+    color: #F0F0F0;
+    transition: background-color 0.2s;
+}
+.buttons button:hover:not(:disabled) {
+    background-color: #C0001B;
+}
+.buttons button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.bio-buttons {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.transform-bio-btn {
+    width: 90%;
+    padding: 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #E30022;
+    color: #F0F0F0;
+    transition: background-color 0.2s;
+}
+
+.transform-bio-btn:hover {
+    background-color: #C0001B;
+}
+
+@media (min-width: 768px) {
+    
+    .battle-container {
+        flex-direction: row;
+        gap: 30px;
+        max-width: 1100px;
+        margin-top: 30px;
+    }
+
+    .card {
+        flex: 1;
+        padding: 25px;
+        min-width: 350px;
+    }
+    
+    .image {
+        height: 400px; 
+    }
+
+    .char-select-btn {
+        width: 115px;
+        font-size: 14px;
+    }
+    
+    .attributes h3 {
+        font-size: 1.1em;
+    }
+    
+    .buttons button {
+        padding: 12px 0;
+        font-size: 1em;
+    }
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.bio-filters {
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.bio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bio-card {
+    height: auto; 
+    min-width: 300px;
+    padding: 20px;
+}
+
+.bio-card .image {
+    height: 400px; 
+} 
+
+@media (min-width: 768px) {
+    .bio-card .image {
+        height: 400px; 
+    }
+}

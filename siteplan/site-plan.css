@@ -1,0 +1,325 @@
+/* if you are using any Google fonts change the font names below to your fonts. 
+Any spaces in your font name should be replaced with a +. 
+Fonts are separated by a | */
+/* NOTE: You MUST link to these fonts in your HTML <head> if they are not system fonts */
+@import url("https://fonts.googleapis.com/css?family=Space+Grotesk|IM+Fell+French+Canon+SC");
+
+:root {
+    /* --- Site Plan Color Palette --- */
+    --primary-color: #392F5A; /* Dark Indigo - Backgrounds/Main */
+    --secondary-color: #E71D36; /* Red - Decepticon/Danger */
+    --accent1-color: #3185FC; /* Bright Blue - Autobot/Primary Accent */
+    --accent2-color: #50D8D7; /* Aqua - Highlight/Active */
+    
+    /* change the values below to your chosen font(s) */
+    --heading-font: "IM Fell French Canon SC", serif;
+    --paragraph-font: "Space Grotesk", sans-serif;
+
+    /* these colors below should be chosen from among your palette colors above */
+    --headline-color-on-white: var(--primary-color); 
+    --headline-color-on-color: white; 
+    --paragraph-color-on-white: var(--primary-color); 
+    --paragraph-color-on-color: white; 
+    --paragraph-background-color: var(--primary-color);
+    --nav-link-color: var(--accent2-color);
+    --nav-background-color: var(--primary-color);
+    --nav-hover-link-color: var(--accent2-color);
+    --nav-hover-background-color: var(--accent1-color);
+}
+
+/*  Look around below...but DON'T CHANGE ANYTHING! */
+
+body {
+    max-width: none; /* Removed max-width for modern full-page card layout */
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    background-color: var(--accent2-color); /* Aqua/Cyan body background */
+    font-family: var(--paragraph-font);
+}
+img {
+    display: block;
+    margin: 0 auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font);
+    color: var(--headline-color-on-white);
+}
+h2 {
+    text-align: center;
+}
+hr {
+    height: 3px;
+    margin: 35px 0;
+    background: var(--secondary-color); /* Red separator */
+}
+header {
+    padding: 1em;
+    text-align: center;
+    color: var(--paragraph-color-on-color);
+    background-color: var(--paragraph-background-color);
+}
+header > h1,
+header > h2 {
+    color: var(--headline-color-on-color);
+}
+
+p {
+    font-family: var(--paragraph-font);
+    color: var(--paragraph-color-on-white);
+    padding: 1em;
+}
+.colors {
+    width: 100%;
+    min-width: 350px;
+    margin: 30px auto;
+    text-align: center;
+}
+.colors th {
+    background-color: #999;
+}
+.colors td {
+    width: 25%;
+    height: 3em;
+}
+
+.primary {
+    background-color: var(--primary-color);
+}
+.secondary {
+    background-color: var(--secondary-color);
+}
+.accent1 {
+    background-color: var(--accent1-color);
+}
+.accent2 {
+    background-color: var(--accent2-color);
+}
+
+p.colored {
+    background-color: var(--paragraph-background-color);
+    color: var(--paragraph-color-on-color);
+}
+
+/* --- NAVIGATION STYLING (Used on both index.html and page2.html) --- */
+.site-nav {
+    background-color: var(--nav-background-color);
+    line-height: 3em;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 0 1em;
+}
+.site-nav a {
+    padding: 1em;
+    min-width: 120px;
+    text-decoration: none;
+    padding: 10px;
+    color: var(--nav-link-color);
+    transition: background-color 0.3s;
+}
+.site-nav a:hover {
+    color: var(--nav-hover-link-color);
+    background-color: var(--nav-hover-background-color);
+}
+/* End of boilerplate/site-plan styles */
+/* ------------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------- */
+/* --- CUSTOM TRANSFORMER CARD STYLES (HOME PAGE) --- */
+/* ------------------------------------------------------------------- */
+
+/* --- Card Structure and Responsiveness --- */
+.card {
+    background: var(--primary-color); /* Dark Indigo card background */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+    /* RESPONSIVE DESIGN: Max width ensures card doesn't get too wide, width ensures it scales down */
+    max-width: 400px; 
+    width: 90%; 
+    margin: 50px auto 20px auto; /* Centered with vertical margin */
+    padding-bottom: 20px; 
+}
+
+.image {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    height: auto; /* Ensures image scales correctly */
+}
+
+/* --- Name/Class Header --- */
+.name {
+    font-size: 1.8em;
+    font-family: var(--heading-font);
+    font-weight: bold;
+    color: var(--headline-color-on-color); /* White text */
+    padding: 15px 0 15px 35px;
+    background-color: var(--accent1-color); /* Autobot Blue strip */
+}
+
+/* --- Health and Level Stats --- */
+.stats {
+    margin: 10px 15px 7px 35px;
+    text-align: left;
+    color: white;
+}
+
+.stats p {
+    margin: 5px 0;
+    color: white;
+    padding: 0;
+}
+
+/* --- Dynamic Health Status --- */
+.stats #char-health {
+    font-weight: bold;
+    color: var(--accent2-color); /* Aqua for healthy */
+    transition: color 0.5s ease;
+}
+
+/* Dead or Low Health State (Conditional Branching CSS) */
+.dead-status {
+    color: var(--secondary-color) !important; /* Red for DESTROYED/Danger */
+    font-weight: bolder;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/* --- Dynamic Attributes Section --- */
+.attributes {
+    margin: 10px 15px 7px 35px;
+    padding-top: 10px;
+    border-top: 1px solid var(--accent2-color); /* Aqua separator line */
+}
+
+.attributes h3 {
+    color: white;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#char-stats-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px;
+}
+
+.stat-item {
+    background-color: var(--accent1-color); /* Autobot Blue chip background */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    flex-basis: calc(50% - 5px); /* Two items per row on desktop */
+    box-sizing: border-box;
+}
+
+.stat-item span {
+    font-weight: bold;
+    color: var(--accent2-color); /* Aqua value highlight */
+}
+
+.stat-item small {
+    display: block;
+    font-size: 0.75em;
+    opacity: 0.8;
+}
+
+/* --- Buttons and Selectors --- */
+.buttons {
+    text-align: center;
+    padding: 10px 0;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 8px 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--accent1-color); /* Autobot Blue button */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color); /* Red hover effect */
+}
+
+/* --- Character Selection Menu --- */
+.character-selector {
+    max-width: 400px;
+    width: 90%;
+    margin: 20px auto 0 auto;
+    padding: 15px;
+    text-align: center;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.character-selector h2 {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+#char-selector-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.char-select-btn {
+    padding: 10px 15px;
+    background-color: var(--accent2-color); /* Aqua button */
+    color: var(--primary-color);
+    border: 2px solid transparent;
+}
+
+.char-select-btn.active {
+    background-color: var(--secondary-color); /* Red highlight when active */
+    color: white;
+    font-weight: bold;
+    border-color: var(--accent1-color); /* Blue border */
+}
+
+/* --- CHILD PAGE STYLES --- */
+.page-content {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bio-section h2 {
+    color: var(--accent1-color); /* Autobot Blue headings */
+    margin-top: 20px;
+    border-bottom: 2px solid var(--accent2-color);
+    padding-bottom: 5px;
+}
+
+.bio-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Final Responsive Adjustment --- */
+@media (max-width: 450px) {
+    .name, .stats, .attributes {
+        padding-left: 15px; /* Reduce padding on small screens */
+    }
+    .stat-item {
+        flex-basis: 100%; /* Stats stack fully on small screens */
+    }
+}
