@@ -129,10 +129,6 @@ p.colored {
 /* End of boilerplate/site-plan styles */
 /* ------------------------------------------------------------------- */
 
-/* ------------------------------------------------------------------- */
-/* --- CUSTOM TRANSFORMER CARD STYLES (HOME PAGE) --- */
-/* ------------------------------------------------------------------- */
-
 /* --- Card Structure and Responsiveness --- */
 .card {
     background: var(--primary-color); /* Dark Indigo card background */
