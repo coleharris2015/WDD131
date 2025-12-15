@@ -25,7 +25,7 @@ body {
 }
 
 .site-logo {
-    height: 100px; /* INCREASED SIZE TO 100px */
+    height: 100px; 
     width: auto;
 }
 
@@ -174,7 +174,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     border: none;
-    border-radius: 4px;
+    border-radius: 44px;
     background-color: #E30022;
     color: #F0F0F0;
     transition: background-color 0.2s;

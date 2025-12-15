@@ -8,7 +8,7 @@ const characterList = [
         level: 10,
         health: 120,
         image_robot: "images/optimus_robot.jpg", 
-        image_alt: "images/optimus_truck.jpg",   
+        image_alt: "images/optimus_truck.jpg",    
         damage_base: 25, 
         stats: [
             { label: "Strength", value: 18, description: "Raw physical power." },
@@ -25,7 +25,7 @@ const characterList = [
         level: 9,
         health: 115,
         image_robot: "images/magnus_robot.jpg", 
-        image_alt: "images/magnus_truck.jpg",   
+        image_alt: "images/magnus_truck.jpg",    
         damage_base: 23, 
         stats: [
             { label: "Strength", value: 17, description: "Raw physical power." },
@@ -42,7 +42,7 @@ const characterList = [
         level: 7,
         health: 95,
         image_robot: "images/hotrod_robot.jpg", 
-        image_alt: "images/hotrod_car.jpg",   
+        image_alt: "images/hotrod_car.jpg",    
         damage_base: 20, 
         stats: [
             { label: "Speed", value: 16, description: "Exceptional reaction time." },
@@ -59,7 +59,7 @@ const characterList = [
         level: 8,
         health: 130,
         image_robot: "images/grimlock_robot.jpg", 
-        image_alt: "images/grimlock_dino.jpg",   
+        image_alt: "images/grimlock_dino.jpg",    
         damage_base: 30, 
         stats: [
             { label: "Strength", value: 20, description: "Me Grimlock strongest!" },
@@ -76,7 +76,7 @@ const characterList = [
         level: 6,
         health: 90,
         image_robot: "images/kup_robot.jpg", 
-        image_alt: "images/kup_truck.jpg",   
+        image_alt: "images/kup_truck.jpg",    
         damage_base: 18, 
         stats: [
             { label: "Experience", value: 19, description: "Seen it all, done it all." },
@@ -93,7 +93,7 @@ const characterList = [
         level: 5,
         health: 75,
         image_robot: "images/bee_robot.jpg", 
-        image_alt: "images/bee_car.jpg",   
+        image_alt: "images/bee_car.jpg",    
         damage_base: 15, 
         stats: [
             { label: "Stealth", value: 17, description: "Excellent infiltration skills." },
@@ -110,7 +110,7 @@ const characterList = [
         level: 5,
         health: 70,
         image_robot: "images/cliff_robot.jpg", 
-        image_alt: "images/cliff_car.jpg",   
+        image_alt: "images/cliff_car.jpg",    
         damage_base: 17, 
         stats: [
             { label: "Temper", value: 18, description: "Always spoiling for a fight." },
@@ -127,7 +127,7 @@ const characterList = [
         level: 7,
         health: 95,
         image_robot: "images/prowl_robot.jpg", 
-        image_alt: "images/prowl_car.jpg",   
+        image_alt: "images/prowl_car.jpg",    
         damage_base: 19, 
         stats: [
             { label: "Wits", value: 19, description: "Master of logical warfare." },
@@ -144,7 +144,7 @@ const characterList = [
         level: 9,
         health: 110,
         image_robot: "images/jetfire_robot.jpg", 
-        image_alt: "images/jetfire_jet.jpg",   
+        image_alt: "images/jetfire_jet.jpg",    
         damage_base: 22, 
         stats: [
             { label: "Flight Speed", value: 20, description: "Fastest Autobot in the air." },
@@ -161,7 +161,7 @@ const characterList = [
         level: 6,
         health: 80,
         image_robot: "images/perc_robot.jpg", 
-        image_alt: "images/perc_scope.jpg",   
+        image_alt: "images/perc_scope.jpg",    
         damage_base: 14, 
         stats: [
             { label: "Science", value: 20, description: "Brilliant physicist and inventor." },
@@ -345,6 +345,13 @@ const characterList = [
 let character = characterList[0]; 
 let enemy = characterList[10]; 
 
+let playerState = {
+    id: character.id,
+    health: character.health,
+    level: character.level,
+    mode: character.mode 
+};
+
 function selectEnemy() {
     const opposingFaction = character.faction === 'Autobot' ? 'Decepticon' : 'Autobot';
 
@@ -368,11 +375,13 @@ function selectEnemy() {
 function selectCharacter(id) {
     const newChar = characterList.find(c => c.id === id);
     if (newChar) {
-        const originalData = characterList.find(c => c.id === newChar.id);
-        newChar.health = originalData.health;
-
         character = newChar; 
         
+        playerState.id = character.id;
+        playerState.health = character.health; 
+        playerState.level = character.level;
+        playerState.mode = character.mode;
+
         selectEnemy(); 
         
         updateCardDisplay();
@@ -382,8 +391,6 @@ function selectCharacter(id) {
 }
 
 const defeatedEnemy = function() {
-    levelUp();
-    
     selectEnemy();
     
     updateCardDisplay();
@@ -391,13 +398,13 @@ const defeatedEnemy = function() {
 };
 
 const enemyAttack = function() {
-    if (character.health > 0) {
+    if (playerState.health > 0) {
         const damage = Math.floor(enemy.damage_base * (0.8 + Math.random() * 0.4)); 
         
-        character.health -= damage;
+        playerState.health -= damage;
         
-        if (character.health <= 0) {
-            character.health = 0; 
+        if (playerState.health <= 0) {
+            playerState.health = 0; 
             document.getElementById('attack-btn').disabled = true;
             alert(`${character.name} has been destroyed! Select a new character to continue.`);
         }
@@ -406,7 +413,7 @@ const enemyAttack = function() {
 }
 
 const attacked = function() {
-    if (enemy.health > 0 && character.health > 0) {
+    if (enemy.health > 0 && playerState.health > 0) {
         const playerDamage = Math.floor(character.damage_base * (0.8 + Math.random() * 0.4)); 
         
         enemy.health -= playerDamage;
@@ -426,20 +433,21 @@ const attacked = function() {
 };
 
 const levelUp = function() {
-    character.level += 1;
-    const maxHealth = 120 + (character.level * 5); 
-    character.health = maxHealth;
+    playerState.level += 1;
+    
+    const maxHealth = character.health + (playerState.level * 5); 
+    playerState.health = maxHealth;
     
     document.getElementById('attack-btn').disabled = false; 
     updateCardDisplay();
 };
 
 const toggleMode = function() {
-    if (character.mode === 'robot') {
-        character.mode = 'alt';
+    if (playerState.mode === 'robot') {
+        playerState.mode = 'alt';
         document.getElementById('transform-btn').textContent = "Transform to Robot";
     } else {
-        character.mode = 'robot';
+        playerState.mode = 'robot';
         document.getElementById('transform-btn').textContent = "Transform to Alt Mode";
     }
     updateCardDisplay(); 
@@ -451,9 +459,10 @@ function updateCardDisplay() {
 
     document.getElementById('char-name').textContent = character.name;
     document.getElementById('char-class').textContent = character.class;
-    document.getElementById('char-level').textContent = character.level;
     
-    if (character.mode === 'robot') {
+    document.getElementById('char-level').textContent = playerState.level;
+    
+    if (playerState.mode === 'robot') {
         charImageEl.src = character.image_robot;
     } else {
         charImageEl.src = character.image_alt;
@@ -461,12 +470,12 @@ function updateCardDisplay() {
     
     healthEl.classList.remove('dead-status');
 
-    if (character.health === 0) {
+    if (playerState.health === 0) {
         healthEl.textContent = 'DESTROYED';
         healthEl.classList.add('dead-status');
     } else {
-        healthEl.textContent = character.health;
-        if (character.health <= 40) {
+        healthEl.textContent = playerState.health;
+        if (playerState.health <= 40) {
             healthEl.classList.add('dead-status');
         }
     }
@@ -548,6 +557,11 @@ function setupCharacterSelection() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    playerState.id = character.id;
+    playerState.health = character.health;
+    playerState.level = character.level;
+    playerState.mode = character.mode;
+
     selectEnemy(); 
 
     updateCardDisplay();
