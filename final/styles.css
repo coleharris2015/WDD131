@@ -13,11 +13,22 @@ body {
 }
 
 .site-nav {
-    text-align: center;
-    padding: 10px 0;
+    padding: 10px;
     border-bottom: 2px solid #E30022; 
     margin-bottom: 20px;
 }
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.site-logo {
+    height: 100px; /* INCREASED SIZE TO 100px */
+    width: auto;
+}
+
 .site-nav a {
     color: #017AFF;
     text-decoration: none;
@@ -86,7 +97,7 @@ body {
 .image {
     width: 100%;
     height: 400px; 
-    object-fit: contain; /* UPDATED: Ensures the entire image is visible */
+    object-fit: contain; 
     border-radius: 4px;
     margin-bottom: 10px;
 }
